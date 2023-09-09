@@ -6,6 +6,9 @@ import 'app/modules/home/controllers/navigation_controller.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
+
+
+
   Get.put(NavigationController());
 
   runApp(const MyApp());  WidgetsFlutterBinding.ensureInitialized();

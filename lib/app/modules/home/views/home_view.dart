@@ -674,7 +674,7 @@ class HomeView extends GetView<HomeController> {
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white.withOpacity(0.21)),
                               child: ListView.builder(
-                                itemCount: 10,
+                                itemCount: addPageController.foodList.length,
                                   itemBuilder: (context, index) {
                                 return Container(
                                   padding: EdgeInsets.symmetric(vertical: 10),
@@ -687,14 +687,16 @@ class HomeView extends GetView<HomeController> {
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                                                    child: Text(
-                                  "Koskous",
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                                                      child: Text(
+                                                        addPageController.foodList[index].foodName,
                                   style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold),
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold),
                                 ),
+                                                    ),
                                                   ),
                                                   IconButton(onPressed: (){
                                                     addPageController.changeStack(0);

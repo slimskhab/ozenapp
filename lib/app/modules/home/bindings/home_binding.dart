@@ -19,8 +19,10 @@ class HomeBinding extends Bindings {
     Get.lazyPut<HomePageController>(
           () => HomePageController(),fenix: true
     );
+
     Get.lazyPut<AddPageController>(
             () => AddPageController(),fenix: true
     );
+    AddPageController controller=Get.find();
   }
 }

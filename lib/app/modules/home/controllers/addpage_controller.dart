@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
-class AddPageController extends GetxController {
+import '../../../AppConsts.dart';
+import '../../../Crud.dart';
+import '../models/Food.dart';
+
+class AddPageController extends GetxController  with Crud{
 
 DateTime date=DateTime.now();
 String month="";
@@ -13,13 +18,25 @@ TextEditingController searchText=TextEditingController();
 
 String hintText="";
 
+List<dynamic> foodList=[];
 
+
+
+getFoods() async {
+  var request = await postRequest(getFoodPath, {});
+  if (request["status"] == "success") {
+    for (var item in request["data"]) {
+      Food foodItem = Food.fromJson(item); // Assuming Food.fromJson is a constructor or factory method in your Food class
+      foodList.add(foodItem);
+    }
+    return foodList;
+  }
+}
 
 changeStack(index){
   stackIndex=index;
   update();
 }
-
  changeDate(DateTime newDate){
    date = newDate;
 
@@ -159,6 +176,8 @@ previousDate(){
 @override
   void onInit() {
     super.onInit();
+getFoods();
+print(foodList);
 
     switch (date.month) {
       case 1:
